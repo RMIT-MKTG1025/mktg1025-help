@@ -311,6 +311,10 @@ button.fchip:hover { border-color: var(--navy); }
 .links { display: grid; gap: 8px; }
 .links .label { margin-bottom: 2px; }
 .lrow { display: flex; flex-wrap: wrap; gap: 8px; }
+.findit { background: var(--navy-tint); border-left: 4px solid var(--navy); border-radius: 0 10px 10px 0; padding: 12px 16px; }
+.findit .label { color: var(--navy); }
+.findit + .label { margin-top: 6px; }
+.where { margin: 6px 0 0; padding-left: 20px; display: grid; gap: 4px; }
 .lbtn {
   display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 9px 16px; border-radius: 10px;
   border: 1.5px solid var(--navy); color: var(--navy); background: var(--bg); text-decoration: none; font-weight: 700;
@@ -1310,38 +1314,37 @@ FIG-TFD,card,Feel,Belonging.,,,,,
 FIG-TFD,card,Do,"Buy the Contour Tumbler at Coles, 10 dollars off in the first four weeks.",,,,,
 </script>
 <script type="text/csv" id="data-links">
-Key,Label,URL
-COURSE,MKTG1025 in Canvas,https://rmit.instructure.com/courses/172370
-ASSESSMENTS,Assessments in Canvas,{course}/assignments
-A1_PAGE,Assessment 1 page in Canvas,{course}/assignments
-A2_PAGE,Assessment 2 page in Canvas,{course}/assignments
-A3_PAGE,Assessment 3 page in Canvas,{course}/assignments
-A2_THEORY_MAP,"Assessment 2 Theory Map, on the Assessment 2 page",{course}/assignments
-A3_THEORY_MAP,"Assessment 3 Theory Map, on the Assessment 3 page",{course}/assignments
-KEY_DATES,Syllabus page: the dates for each week,{course}/assignments/syllabus
-TEACHING_TEAM,Teaching Team page in Canvas,{course}
-GETTING_HELP,MKTG1025 home page in Canvas,{course}
-MODULES,Weekly modules in Canvas,{course}/modules
-WEEK6,Weekly modules in Canvas: open Week 6,{course}/modules
-WEEK8,Weekly modules in Canvas: open Week 8,{course}/modules
-SOURCES,"Required sources list, on the assessment page",{course}/assignments
-MEDIA_BUILDER,Media Plan Builder,https://rmit-mktg1025.github.io/Media-Dashboard/
-EXTENSIONS,RMIT extensions,https://www.rmit.edu.au/students/my-course/assessment-results/special-consideration-extensions/extensions
-SPECIAL_CONSIDERATION,RMIT special consideration,https://www.rmit.edu.au/students/my-course/assessment-results/special-consideration-extensions/special-consideration
-IMPORTANT_DATES,"RMIT important dates: census, withdrawal and results",https://www.rmit.edu.au/students/my-course/important-dates
-MARKET_DATA,RMIT Library databases: search for Passport,https://www.rmit.edu.au/library/borrowing-and-collections/learning-and-research-resources
-REFERENCING,RMIT Easy Cite,https://www.lib.rmit.edu.au/easy-cite/
-LIBRARY,RMIT Library computers and study spaces,https://www.rmit.edu.au/library/about-and-contacts/computers-and-study-spaces
-STUDENT_CONNECT,RMIT Student Connect,https://www.rmit.edu.au/students/support-services/student-connect
-ELP,RMIT Equitable Learning Services,https://www.rmit.edu.au/students/support-services/equitable-learning
-WELLBEING,RMIT counselling and psychological services,https://www.rmit.edu.au/students/support-services/health-safety-wellbeing/mental-health-counselling/counselling
-TIMETABLE,RMIT class timetables,https://www.rmit.edu.au/students/my-course/class-timetables
-STUDY_SUPPORT,RMIT Study Support,https://www.rmit.edu.au/students/support-services/study-support
-COMPLAINTS,RMIT student complaints,https://www.rmit.edu.au/students/support-services/feedback-complaints-appeals/complaints
+Key,Label,URL,Type
+ASSESSMENTS,Assessments page,,course
+A1_PAGE,Assessment 1 page,,course
+A2_PAGE,Assessment 2 page,,course
+A3_PAGE,Assessment 3 page,,course
+A2_THEORY_MAP,"Assessment 2 Theory Map, on the Assessment 2 page",,course
+A3_THEORY_MAP,"Assessment 3 Theory Map, on the Assessment 3 page",,course
+KEY_DATES,"Syllabus page, with the dates for each week",,course
+TEACHING_TEAM,Teaching Team page,,course
+GETTING_HELP,Course home page,,course
+MODULES,Weekly modules,,course
+WEEK6,Week 6 module,,course
+WEEK8,Week 8 module,,course
+SOURCES,"Required sources list, on the assessment page",,course
+MEDIA_BUILDER,Media Plan Builder,https://rmit-mktg1025.github.io/Media-Dashboard/,web
+EXTENSIONS,RMIT extensions,https://www.rmit.edu.au/students/my-course/assessment-results/special-consideration-extensions/extensions,web
+SPECIAL_CONSIDERATION,RMIT special consideration,https://www.rmit.edu.au/students/my-course/assessment-results/special-consideration-extensions/special-consideration,web
+IMPORTANT_DATES,"RMIT important dates: census, withdrawal and results",https://www.rmit.edu.au/students/my-course/important-dates,web
+MARKET_DATA,RMIT Library databases: search for Passport,https://www.rmit.edu.au/library/borrowing-and-collections/learning-and-research-resources,web
+REFERENCING,RMIT Easy Cite,https://www.lib.rmit.edu.au/easy-cite/,web
+LIBRARY,RMIT Library computers and study spaces,https://www.rmit.edu.au/library/about-and-contacts/computers-and-study-spaces,web
+STUDENT_CONNECT,RMIT Student Connect,https://www.rmit.edu.au/students/support-services/student-connect,web
+ELP,RMIT Equitable Learning Services,https://www.rmit.edu.au/students/support-services/equitable-learning,web
+WELLBEING,RMIT counselling and psychological services,https://www.rmit.edu.au/students/support-services/health-safety-wellbeing/mental-health-counselling/counselling,web
+TIMETABLE,RMIT class timetables,https://www.rmit.edu.au/students/my-course/class-timetables,web
+STUDY_SUPPORT,RMIT Study Support,https://www.rmit.edu.au/students/support-services/study-support,web
+COMPLAINTS,RMIT student complaints,https://www.rmit.edu.au/students/support-services/feedback-complaints-appeals/complaints,web
 </script>
 
 <script>
-/* MKTG1025 Help: data and search. No dependencies. Shared by the page and the test harness. */
+/* Course Help: data and search. No dependencies. Shared by the page and the test harness. */
 (function (root) {
   'use strict';
 
@@ -1480,11 +1483,10 @@ COMPLAINTS,RMIT student complaints,https://www.rmit.edu.au/students/support-serv
 
   function prepare(rawAnswers, rawLinks, rawSections, rawGuides, rawFigures) {
     var links = {};
-    (rawLinks || []).forEach(function (l) { if (l.key) links[l.key.trim()] = { label: l.label || l.key, url: (l.url || '').trim() }; });
-    var course = links.COURSE ? links.COURSE.url.replace(/\/+$/, '') : '';
-    Object.keys(links).forEach(function (k) {
-      var u = links[k].url;
-      if (u.indexOf('{course}') >= 0) links[k].url = course ? u.replace('{course}', course) : '';
+    (rawLinks || []).forEach(function (l) {
+      if (!l.key) return;
+      var url = (l.url || '').trim();
+      links[l.key.trim()] = { label: l.label || l.key, url: url, course: l.type === 'course' || !url };
     });
     var answers = (rawAnswers || []).filter(function (a) { return a.id && a.question; }).map(function (a) {
       var details = lines(a.details);
@@ -1630,7 +1632,7 @@ COMPLAINTS,RMIT student complaints,https://www.rmit.edu.au/students/support-serv
 })(typeof window !== 'undefined' ? window : globalThis);
 </script>
 <script>
-/* MKTG1025 Help: interface. Reads its data from the CSV blocks embedded in this page,
+/* Course Help: interface. Reads its data from the CSV blocks embedded in this page,
    or from answers.csv, sections.csv, guides.csv, figures.csv and links.csv published beside it. */
 (function () {
   'use strict';
@@ -1638,6 +1640,8 @@ COMPLAINTS,RMIT student complaints,https://www.rmit.edu.au/students/support-serv
   var CONFIG = {
     ANSWERS: 'answers.csv', SECTIONS: 'sections.csv', GUIDES: 'guides.csv', FIGURES: 'figures.csv', LINKS: 'links.csv',
     MAX_RESULTS: 6,
+    CODE: 'MKTG1025',
+    SITE: 'Canvas',
     TICKS_KEY: 'mktg1025help.ticks.',
     EXAMPLE_BRAND: 'Coca-Cola Beverageware',
     EXAMPLE_NOTE: 'Beverageware is not allowed as your category: a report about beverageware is off topic and receives zero. The numbers are made up to show the method. Your numbers come from your own research.'
@@ -1795,17 +1799,22 @@ COMPLAINTS,RMIT student complaints,https://www.rmit.edu.au/students/support-serv
     items.forEach(function (x) { u.appendChild(el('li', null, [icon('check'), el('span', { text: x })])); });
     return u;
   }
+  /* web links become buttons; course site pages are named only, because their address changes every offering */
   function linksBlock(keyList, heading) {
-    var row = el('div', { class: 'lrow' }), n = 0;
+    var row = el('div', { class: 'lrow' }), here = el('ul', { class: 'where' }), n = 0, m = 0;
     (keyList || []).forEach(function (k) {
       var l = db.links[k];
-      if (!l || !l.url) return;
+      if (!l) return;
+      if (l.course) { m++; here.appendChild(el('li', { text: l.label.charAt(0).toUpperCase() + l.label.slice(1) })); return; }
       n++;
       row.appendChild(el('a', { class: 'lbtn' + (k === 'MEDIA_BUILDER' ? ' primary' : ''), href: l.url, target: '_blank', rel: 'noopener' },
         [l.label, el('span', { class: 'sr', text: ' (opens in a new tab)' }), icon('ext')]));
     });
-    if (!n) return null;
-    return el('div', { class: 'links' }, [el('p', { class: 'label', text: heading || 'Go to' }), row]);
+    if (!n && !m) return null;
+    var box = el('div', { class: 'links' });
+    if (m) box.appendChild(el('div', { class: 'findit' }, [el('p', { class: 'label', text: 'Find it in ' + CONFIG.SITE }), here]));
+    if (n) { box.appendChild(el('p', { class: 'label', text: heading || 'Go to' })); box.appendChild(row); }
+    return box;
   }
   /* accessible tabs: arrow keys move between tabs */
   function tabset(name, defs, active) {
@@ -1901,7 +1910,7 @@ COMPLAINTS,RMIT student complaints,https://www.rmit.edu.au/students/support-serv
     return el('section', { class: 'doors', 'aria-label': labelText }, [doorButton('assessments'), doorButton('rules'), doorButton('help')]);
   }
   function renderHome() {
-    main.appendChild(el('h2', { class: 'sr', text: 'MKTG1025 Help' }));
+    main.appendChild(el('h2', { class: 'sr', text: CONFIG.CODE + ' Help' }));
     main.appendChild(el('p', { class: 'label', text: 'Start here' }));
     main.appendChild(doors('Start here'));
   }
@@ -2216,7 +2225,7 @@ COMPLAINTS,RMIT student complaints,https://www.rmit.edu.au/students/support-serv
       if (items.mode) return drawPushPull(rows, title, note);
       if (items.part) return drawAnatomy(rows, title, note);
       if (items.card) return drawTrio(rows, title, note);
-    } catch (err) { if (window.console) console.warn('MKTG1025 Help: a figure did not draw.', err); }
+    } catch (err) { if (window.console) console.warn('Course Help: a figure did not draw.', err); }
     return null;
   }
 
@@ -2568,7 +2577,7 @@ COMPLAINTS,RMIT student complaints,https://www.rmit.edu.au/students/support-serv
         el('p', { style: 'margin:0 0 6px;font-weight:700', text: 'The page did not load.' }),
         el('p', { style: 'margin:0', text: 'Refresh the page. If it keeps happening, ask your tutor.' })
       ]));
-      if (window.console) console.warn('MKTG1025 Help: could not load data. Open the page through a web address, not by double-clicking the file.', err);
+      if (window.console) console.warn('Course Help: could not load data. Open the page through a web address, not by double-clicking the file.', err);
     });
 })();
 </script>
